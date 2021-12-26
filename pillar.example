@@ -1,0 +1,4 @@
+tool:
+  vim:
+  	- name: user
+  	  xdg: true
