@@ -1,15 +1,15 @@
-{%- for user in salt['pillar.get']('tool:vim', []) | rejectattr('xdg', 'sameas', False) %}
-  {%- from 'tool-vim/map.jinja' import user, xdg with context %}
+{%- from 'tool-vim/map.jinja' import vim %}
 
+{%- for user in vim.users | rejectattr('xdg', 'sameas', False) %}
 Vim configuration is migrated to XDG_CONFIG_HOME for user '{{ user.name }}':
   file.rename:
-    - name: {{ xdg.config }}/vim/vimrc
+    - name: {{ user.xdg.config }}/vim/vimrc
     - source: {{ user.home }}/.vimrc
     - makedirs: true
 
 Vim XDG configuration file is available for user '{{ user.name }}':
   file.managed:
-    - name: {{ xdg.config }}/vim/xdg.vim
+    - name: {{ user.xdg.config }}/vim/xdg.vim
     - source: salt://tool-vim/files/xdg.vim
     - makedirs: true
     - user: {{ user.name }}

@@ -1,5 +1,7 @@
+{%- from 'tool-vim/map.jinja' import vim %}
+
 include:
   - .package
-{%- if salt['pillar.get']('tool:vim') | rejectattr('xdg', 'sameas', False) %}
+{%- if vim.users | rejectattr('xdg', 'sameas', False) %}
   - .xdg
 {%- endif %}

@@ -1,4 +1,9 @@
 tool:
   vim:
-  	- name: user
-  	  xdg: true
+    users: # vim-specific
+      user:
+        xdg: true
+tool:
+  users:   # or global
+    user:
+      xdg: true

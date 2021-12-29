@@ -1,8 +1,9 @@
-{%- for user in salt['pillar.get']('tool:vim', salt['pillar.get']('tool:users', [])) %}
-  {%- from 'tool-vim/map.jinja' import user, xdg with context %}
+{%- from 'tool-vim/map.jinja' import vim %}
+
+{%- for user in vim.users | selectattr('dotconfig') %}
 vim configuration is synced for user '{{ user.name }}':
   file.recurse:
-    - name: {{ xdg.config }}/vim
+    - name: {{ user.xdg.config }}/vim
     - source:
       - salt://user/{{ user.name }}/dotfiles/vim
       - salt://user/dotfiles/vim
