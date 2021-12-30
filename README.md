@@ -51,3 +51,11 @@ users:
 
 #### Formula-specific
 There are none currently.
+
+### Dotfiles
+`tool-vim.configsync` will recursively apply templates from 
+
+- `salt://dotconfig/<user>/vim` or
+- `salt://dotconfig/vim`
+
+to the user's config dir for every user that has it enabled (see `user.dotconfig`). The target folder will not be cleaned by default (ie files in the target that are absent from the user's dotconfig will stay).
