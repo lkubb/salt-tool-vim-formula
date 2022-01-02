@@ -1,6 +1,6 @@
 {%- from 'tool-vim/map.jinja' import vim %}
 
-{%- if vim.users | selectattr('dotconfig') %}
+{%- if vim.users | selectattr('dotconfig', 'defined') | selectattr('dotconfig') %}
 include:
   - .configsync
 {%- endif %}

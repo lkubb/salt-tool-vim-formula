@@ -1,6 +1,6 @@
 {%- from 'tool-vim/map.jinja' import vim %}
 
-{%- for user in vim.users | selectattr('dotconfig') %}
+{%- for user in vim.users | selectattr('dotconfig', 'defined') | selectattr('dotconfig') %}
 vim configuration is synced for user '{{ user.name }}':
   file.recurse:
     - name: {{ user.xdg.config }}/vim
