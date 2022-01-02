@@ -5,8 +5,8 @@ vim configuration is synced for user '{{ user.name }}':
   file.recurse:
     - name: {{ user.xdg.config }}/vim
     - source:
-      - salt://user/{{ user.name }}/dotfiles/vim
-      - salt://user/dotfiles/vim
+      - salt://dotconfig/{{ user.name }}/vim
+      - salt://dotconfig/vim
     - context:
         user: {{ user }}
     - template: jinja
