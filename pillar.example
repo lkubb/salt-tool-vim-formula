@@ -2,8 +2,10 @@ tool:
   vim:
     users: # vim-specific
       user:
+        dotconfig: true
         xdg: true
 tool:
   users:   # or global
     user:
+      dotconfig: true
       xdg: true

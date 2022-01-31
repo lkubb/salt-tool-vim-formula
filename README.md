@@ -46,6 +46,7 @@ The following shows an example of `tool-vim` pillar configuration. Namespace it 
 ```yaml
 users:
   user:
+    dotconfig: true
     xdg: true
 ```
 
