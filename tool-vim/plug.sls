@@ -13,6 +13,8 @@ vim-plug plugin manager is installed for user '{{ user.name }}':
     - user: {{ user.name }}
     - group: {{ user.group }}
     - mode: '0644'
+    - dir_mode: '0755'
+    - makedirs: true
     - require:
         - vim setup is completed
 {%- endfor %}
