@@ -36,7 +36,7 @@ persistenv file for vim for user '{{ user.name }}' exists:
 
 Vim uses XDG configuration file for user '{{ user.name }}':
   file.append:
-    - name: {{ user.persistenv }}
+    - name: {{ user.home }}/{{ user.persistenv }}
     - text: export VIMINIT="if has('nvim') | so ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim | else | set nocp | so ${XDG_CONFIG_HOME:-$HOME/.config}/vim/xdg.vim | endif"
     - require:
       - persistenv file for vim for user '{{ user.name }}' exists
