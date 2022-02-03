@@ -36,6 +36,15 @@ data: {{ salt['cmd.run']('[ -n "$XDG_DATA_HOME" ] && echo "${XDG_DATA_HOME}" || 
 state: {{ salt['cmd.run']('[ -n "$XDG_STATE_HOME" ] && echo "${XDG_STATE_HOME}" || echo "${HOME}/.local/state"', runas=user) }}
     {%- endload -%}
     {%- do users[user].update({'xdg': xdg}) -%}
+    {%- do users[user]['_vim'].update({
+          'confdir': xdg.config ~ '/vim',
+          'datadir': xdg.data ~ '/vim'})
+    -%}
+  {%- else -%}
+    {%- do users[user]['_vim'].update({
+      'confdir': users[user].home ~ '/.vim',
+      'datadir': users[user].home ~ '/.vim'
+    }) -%}
   {%- endif -%}
 {%- endfor -%}
 

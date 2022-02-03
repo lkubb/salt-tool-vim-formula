@@ -1,11 +1,16 @@
 {%- from 'tool-vim/map.jinja' import vim %}
 
+include:
+  - .package
+
 {%- for user in vim.users | rejectattr('xdg', 'sameas', False) %}
 Vim configuration is migrated to XDG_CONFIG_HOME for user '{{ user.name }}':
   file.rename:
     - name: {{ user.xdg.config }}/vim/vimrc
     - source: {{ user.home }}/.vimrc
     - makedirs: true
+    - require_in:
+        - vim setup is completed
 
 Vim XDG configuration file is available for user '{{ user.name }}':
   file.managed:
@@ -15,6 +20,8 @@ Vim XDG configuration file is available for user '{{ user.name }}':
     - user: {{ user.name }}
     - group: {{ user.group }}
     - mode: '0600'
+    - require_in:
+        - vim setup is completed
 
   {%- if user.persistenv | default(False) %}
 Vim uses XDG configuration file for user '{{ user.name }}':

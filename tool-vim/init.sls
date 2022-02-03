@@ -8,3 +8,6 @@ include:
 {%- if vim.users | selectattr('dotconfig', 'defined') | selectattr('dotconfig') %}
   - .configsync
 {%- endif %}
+{%- if vim.users | selectattr('vim.plug', 'defined') | selectattr('vim.plug') %}
+  - .plug
+{%- endif %}

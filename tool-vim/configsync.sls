@@ -1,5 +1,8 @@
 {%- from 'tool-vim/map.jinja' import vim %}
 
+include:
+  - .package
+
 {%- for user in vim.users | selectattr('dotconfig', 'defined') | selectattr('dotconfig') %}
 vim configuration is synced for user '{{ user.name }}':
   file.recurse:
@@ -15,4 +18,6 @@ vim configuration is synced for user '{{ user.name }}':
     - file_mode: keep
     - dir_mode: '0700'
     - makedirs: True
+    - require_in:
+        - vim setup is completed
 {%- endfor %}

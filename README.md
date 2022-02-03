@@ -48,6 +48,8 @@ users:
   user:
     dotconfig: true
     xdg: true
+    vim:
+      plug: false  # install vim-plug plugin manager
 ```
 
 #### Formula-specific
