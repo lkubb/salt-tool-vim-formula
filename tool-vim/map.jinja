@@ -49,4 +49,3 @@ state: {{ salt['cmd.run']('[ -n "$XDG_STATE_HOME" ] && echo "${XDG_STATE_HOME}" 
 {%- endfor -%}
 
 {%- do vim.update({'users': users.values() | list}) -%}
-{% do salt.log.error(vim) %}
