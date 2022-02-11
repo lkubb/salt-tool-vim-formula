@@ -1,11 +1,12 @@
 tool:
   vim:
     defaults:
-      plug: false   # install vim-plug plugin manager
-tool:
-  users:   # or global
+      plug: false           # install vim-plug plugin manager
+      plug_install: false   # when synced dotconfig has changed, apply PlugInstall
+
+  users:
     user:
-      xdg: true     # force xdg dirs
+      xdg: true      # force xdg dirs
       # sync this user's config from a dotfiles repo available as
       # salt://dotconfig/<user>/vim or salt://dotconfig/vim
       dotconfig: true
@@ -13,4 +14,5 @@ tool:
       # (will be appended to file relative to $HOME)
       persistenv: '.config/zsh/zshenv'
       vim:
-        plug: true  # install vim-plug plugin manager
+        plug: false           # install vim-plug plugin manager
+        plug_install: false   # when synced dotconfig has changed, apply PlugInstall

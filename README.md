@@ -53,7 +53,8 @@ user:
   # (will be appended to file relative to $HOME)
   persistenv: '.config/zsh/zshenv'
   vim:
-    plug: false  # install vim-plug plugin manager
+    plug: false           # install vim-plug plugin manager
+    plug_install: false   # when synced dotconfig has changed, apply PlugInstall
 ```
 
 #### Formula-specific
@@ -62,6 +63,7 @@ tool:
   vim:
     defaults:
       plug: false  # install vim-plug plugin manager
+      plug_install: false   # when synced dotconfig has changed, apply PlugInstall
 ```
 
 ### Dotfiles
