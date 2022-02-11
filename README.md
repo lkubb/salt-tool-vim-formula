@@ -44,16 +44,25 @@ tool:
 #### User-specific
 The following shows an example of `tool-vim` pillar configuration. Namespace it to `tool:users` and/or `tool:vim:users`.
 ```yaml
-users:
-  user:
-    dotconfig: true
-    xdg: true
-    vim:
-      plug: false  # install vim-plug plugin manager
+user:
+  xdg: true      # force xdg dirs
+  # sync this user's config from a dotfiles repo available as
+  # salt://dotconfig/<user>/karabiner or salt://dotconfig/karabiner
+  dotconfig: true
+  # persist vim env vars to use xdg dirs permanently
+  # (will be appended to file relative to $HOME)
+  persistenv: '.config/zsh/zshenv'
+  vim:
+    plug: false  # install vim-plug plugin manager
 ```
 
 #### Formula-specific
-There are none currently.
+```yaml
+tool:
+  vim:
+    defaults:
+      plug: false  # install vim-plug plugin manager
+```
 
 ### Dotfiles
 `tool-vim.configsync` will recursively apply templates from 

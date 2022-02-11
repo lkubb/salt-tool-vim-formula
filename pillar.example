@@ -1,13 +1,16 @@
 tool:
   vim:
-    users: # vim-specific
-      user:
-        dotconfig: true
-        xdg: true
+    defaults:
+      plug: false   # install vim-plug plugin manager
 tool:
   users:   # or global
     user:
+      xdg: true     # force xdg dirs
+      # sync this user's config from a dotfiles repo available as
+      # salt://dotconfig/<user>/karabiner or salt://dotconfig/karabiner
       dotconfig: true
-      xdg: true
+      # persist vim env vars to use xdg dirs permanently
+      # (will be appended to file relative to $HOME)
+      persistenv: '.config/zsh/zshenv'
       vim:
-        plug: false  # install vim-plug plugin manager
+        plug: true  # install vim-plug plugin manager
