@@ -47,7 +47,7 @@ The following shows an example of `tool-vim` pillar configuration. Namespace it 
 user:
   xdg: true      # force xdg dirs
   # sync this user's config from a dotfiles repo available as
-  # salt://dotconfig/<user>/karabiner or salt://dotconfig/karabiner
+  # salt://dotconfig/<user>/vim or salt://dotconfig/vim
   dotconfig: true
   # persist vim env vars to use xdg dirs permanently
   # (will be appended to file relative to $HOME)
