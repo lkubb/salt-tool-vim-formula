@@ -45,10 +45,13 @@ tool:
 The following shows an example of `tool-vim` pillar configuration. Namespace it to `tool:users` and/or `tool:vim:users`.
 ```yaml
 user:
-  xdg: true      # force xdg dirs
+  xdg: true               # force xdg dirs
   # sync this user's config from a dotfiles repo available as
   # salt://dotconfig/<user>/vim or salt://dotconfig/vim
-  dotconfig: true
+  dotconfig:              # can be bool or mapping
+    file_mode: '0600'     # default: keep destination or salt umask (new)
+    dir_mode: '0700'      # default: 0700
+    clean: false          # delete files in target. default: false
   # persist vim env vars to use xdg dirs permanently
   # (will be appended to file relative to $HOME)
   persistenv: '.config/zsh/zshenv'
@@ -62,8 +65,8 @@ user:
 tool:
   vim:
     defaults:
-      plug: false  # install vim-plug plugin manager
-      plug_install: false   # when synced dotconfig has changed, apply PlugInstall
+      plug: false         # install vim-plug plugin manager
+      plug_install: false # when synced dotconfig has changed, apply PlugInstall
 ```
 
 ### Dotfiles
