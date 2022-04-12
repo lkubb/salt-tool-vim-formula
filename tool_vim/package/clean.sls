@@ -9,6 +9,7 @@
 include:
   - {{ sls_config_clean }}
 
+
 Vim is removed:
   pkg.removed:
     - name: {{ vim.lookup.pkg.name }}

@@ -5,6 +5,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
 
+
 Vim is installed:
   pkg.installed:
     - name: {{ vim.lookup.pkg.name }}

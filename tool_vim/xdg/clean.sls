@@ -6,7 +6,7 @@
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
 
 
-{%- for user in vim.users | rejectattr('xdg', 'sameas', False) %}
+{%- for user in vim.users | rejectattr('xdg', 'sameas', false) %}
 
 {%-   set user_default_conf = user.home | path_join(vim.lookup.paths.confdir, vim.lookup.paths.conffile) %}
 {%-   set user_xdg_confdir = user.xdg.config | path_join(vim.lookup.paths.xdg_dirname) %}

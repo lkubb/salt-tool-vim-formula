@@ -30,8 +30,8 @@ The following shows an example of ``tool_vim`` per-user configuration. If provid
 
   user:
 
-        # Force the usage of XDG directories for this user.
-      xdg: true
+      # Force the usage of XDG directories for this user.
+    xdg: true
 
       # Sync this user's config from a dotfiles repo.
       # The available paths and their priority can be found in the

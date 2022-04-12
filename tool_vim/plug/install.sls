@@ -22,5 +22,5 @@ vim-plug plugin manager is installed for user '{{ user.name }}':
     - dir_mode: '0755'
     - makedirs: true
     - require:
-        - vim setup is completed
+        - Vim setup is completed
 {%- endfor %}
