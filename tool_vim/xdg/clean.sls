@@ -1,11 +1,14 @@
-# -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- set tplroot = tpldir.split('/')[0] %}
+{#-
+    Removes Vim XDG compatibility crutches for all managed users.
+#}
+
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
 
 
-{%- for user in vim.users | rejectattr('xdg', 'sameas', false) %}
+{%- for user in vim.users | rejectattr("xdg", "sameas", false) %}
 
 {%-   set user_default_conf = user.home | path_join(vim.lookup.paths.confdir, vim.lookup.paths.conffile) %}
 {%-   set user_xdg_confdir = user.xdg.config | path_join(vim.lookup.paths.xdg_dirname) %}
@@ -27,7 +30,7 @@ Vim does not have its data folder in XDG_DATA_HOME for user '{{ user.name }}':
   file.absent:
     - name: {{ user_xdg_datadir }}
 
-{%-   if user.get('persistenv') %}
+{%-   if user.get("persistenv") %}
 
 Vim is ignorant about XDG location for user '{{ user.name }}':
   file.replace:

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- set tplroot = tpldir.split('/')[0] %}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
@@ -9,7 +8,7 @@ include:
   - {{ tplroot }}.package
 
 
-{%- for user in vim.users | rejectattr('xdg', 'sameas', false) %}
+{%- for user in vim.users | rejectattr("xdg", "sameas", false) %}
 
 {%-   set user_default_conf = user.home | path_join(vim.lookup.paths.confdir, vim.lookup.paths.conffile) %}
 {%-   set user_xdg_confdir = user.xdg.config | path_join(vim.lookup.paths.xdg_dirname) %}
@@ -37,10 +36,11 @@ Existing Vim configuration is migrated for user '{{ user.name }}':
 
 Vim XDG configuration file is available for user '{{ user.name }}':
   file.managed:
-    - name: {{ user_xdg_confdir | path_join('xdg.vim') }}
-    - source: {{ files_switch(['xdg.vim'],
-                              lookup='Vim XDG configuration file is available for user \'{{ user.name }}\'',
-                              opt_prefixes=[user.name])
+    - name: {{ user_xdg_confdir | path_join("xdg.vim") }}
+    - source: {{ files_switch(["xdg.vim"],
+                              lookup="Vim XDG configuration file is available for user '{{ user.name }}'",
+                              opt_prefixes=[user.name],
+                  )
               }}
     - makedirs: true
     - user: {{ user.name }}
@@ -50,7 +50,7 @@ Vim XDG configuration file is available for user '{{ user.name }}':
     - require_in:
         - Vim setup is completed
 
-{%-   if user.get('persistenv') %}
+{%-   if user.get("persistenv") %}
 
 persistenv file for Vim exists for user '{{ user.name }}':
   file.managed:
