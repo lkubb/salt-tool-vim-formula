@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "salt_tool_vim"
+name = "tool_vim_formula"
 version = "1.0.0"
 description = "Saltstack states to manage Vim"
 authors = ["lkubb"]

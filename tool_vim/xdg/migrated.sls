@@ -2,7 +2,7 @@
 
 {%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+{%- from tplroot ~ "/libtofsstack.jinja" import files_switch with context %}
 
 include:
   - {{ tplroot }}.package
@@ -37,10 +37,12 @@ Existing Vim configuration is migrated for user '{{ user.name }}':
 Vim XDG configuration file is available for user '{{ user.name }}':
   file.managed:
     - name: {{ user_xdg_confdir | path_join("xdg.vim") }}
-    - source: {{ files_switch(["xdg.vim"],
-                              lookup="Vim XDG configuration file is available for user '{{ user.name }}'",
-                              opt_prefixes=[user.name],
-                  )
+    - source: {{ files_switch(
+                    ["xdg.vim"],
+                    lookup="Vim XDG configuration file is available for user '{{ user.name }}'",
+                    config=vim,
+                    custom_data={"users": [user.name]},
+                 )
               }}
     - makedirs: true
     - user: {{ user.name }}

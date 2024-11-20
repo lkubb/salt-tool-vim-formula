@@ -9,7 +9,7 @@
 
 {%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vim with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch %}
+{%- from tplroot ~ "/libtofsstack.jinja" import files_switch %}
 
 {%- if vim.users | selectattr("vim.plug_install", "defined") | selectattr("vim.plug_install") | list %}
 
@@ -24,10 +24,14 @@ Vim configuration is synced for user '{{ user.name }}':
   file.recurse:
     - name: {{ user["_vim"].confdir }}
     - source: {{ files_switch(
-                ["vim"],
-                default_files_switch=["id", "os_family"],
-                override_root="dotconfig",
-                opt_prefixes=[user.name]) }}
+                    ["vim"],
+                    lookup="Vim configuration is synced for user '{}'".format(user.name),
+                    config=vim,
+                    path_prefix="dotconfig",
+                    files_dir="",
+                    custom_data={"users": [user.name]},
+                 )
+              }}
     - context:
         user: {{ user | json }}
     - template: jinja
